@@ -5,7 +5,7 @@ menu.addEventListener('click',()=>{const open=header.classList.toggle('open');me
 document.querySelectorAll('nav a').forEach(link=>link.addEventListener('click',closeMenu));
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&header.classList.contains('open')){closeMenu();menu.focus();}});
 // Contact form relay. Leave empty to prepare the email in the visitor's own mail app only.
-const FORM_ENDPOINT='';
+const FORM_ENDPOINT='https://polancoventures-contact.polancoventures.workers.dev/';
 const contactForm=document.querySelector('#contact-form');const sentPanel=document.querySelector('#sent');const submitButton=contactForm.querySelector('button[type=submit]');const formNote=contactForm.querySelector('.form-note');contactForm.querySelector('[name="t"]').value=String(Date.now());if(FORM_ENDPOINT){submitButton.textContent='Send introduction';formNote.textContent='Your details go to contact@polancoventures.com and are used only to reply. If sending fails, the email is prepared for you to send yourself.';}
 const help=document.querySelector('#audience-help');
 const audienceHints={company:'Tell us about the business, its stage and the decision ahead.',investor:'Share your investment focus, relevant markets and the relationships you want to explore.',partner:'Tell us about your expertise and where you see an opportunity to work together.'};
