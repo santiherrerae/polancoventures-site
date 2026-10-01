@@ -1,0 +1,12 @@
+name = "polancoventures-contact"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# Non-secret settings. Change MAIL_FROM once the sending domain is verified in Resend.
+[vars]
+MAIL_TO = "contact@polancoventures.com"
+MAIL_FROM = "Polanco Ventures <form@polancoventures.com>"
+ALLOWED_ORIGINS = "https://www.polancoventures.com"
+
+# The secret is never in this file. Set it once with:
+#   npx wrangler secret put RESEND_API_KEY

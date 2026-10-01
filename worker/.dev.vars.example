@@ -1,0 +1,4 @@
+RESEND_API_KEY=re_xxxxxxxxx
+# Local testing only: point at a mock and allow the local site origin.
+# MAIL_API_URL=http://127.0.0.1:8799/emails
+# ALLOWED_ORIGINS=http://127.0.0.1:8766
