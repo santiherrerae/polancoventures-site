@@ -1,0 +1,16 @@
+const header=document.querySelector('.header');
+const menu=document.querySelector('.menu');
+function closeMenu(){header.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu';}
+menu.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close':'Menu';});
+document.querySelectorAll('nav a').forEach(link=>link.addEventListener('click',closeMenu));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&header.classList.contains('open')){closeMenu();menu.focus();}});
+const contactForm=document.querySelector('#contact-form');
+const help=document.querySelector('#audience-help');
+const audienceHints={company:'Tell us about the business, its stage and the decision ahead.',investor:'Share your investment focus, relevant markets and the relationships you want to explore.',partner:'Tell us about your expertise and where you see an opportunity to work together.'};
+function setAudience(value){const radio=contactForm.querySelector(`input[value="${value}"]`);if(!radio)return;radio.checked=true;help.textContent=audienceHints[value];document.querySelector('#email-preview').hidden=true;contactForm.hidden=false;}
+contactForm.querySelectorAll('[name="audience"]').forEach(radio=>radio.addEventListener('change',()=>{help.textContent=audienceHints[radio.value];}));
+document.querySelectorAll('[data-audience]').forEach(link=>link.addEventListener('click',()=>setAudience(link.dataset.audience)));
+let preparedIntroduction='';
+contactForm.addEventListener('submit',event=>{event.preventDefault();const data=new FormData(contactForm);const audience={company:'Company leader',investor:'Investor',partner:'Strategic partner'}[data.get('audience')];const subject=`${audience} introduction | ${data.get('company').trim()}`;preparedIntroduction=`To: contact@polancoventures.com\nSubject: ${subject}\n\nHello Polanco Ventures,\n\n${data.get('message').trim()}\n\n${data.get('name').trim()}\n${data.get('company').trim()}\n${data.get('email').trim()}\nRelationship: ${audience}`;document.querySelector('#email-body').textContent=preparedIntroduction;document.querySelector('#open-email').href=`mailto:contact@polancoventures.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(preparedIntroduction.split('\n\n').slice(1).join('\n\n'))}`;contactForm.hidden=true;const preview=document.querySelector('#email-preview');preview.hidden=false;document.querySelector('#copy-status').textContent='';preview.focus();});
+document.querySelector('#edit-email').addEventListener('click',()=>{document.querySelector('#email-preview').hidden=true;contactForm.hidden=false;contactForm.querySelector('[name="name"]').focus();});
+document.querySelector('#copy-email').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(preparedIntroduction);document.querySelector('#copy-status').textContent='Introduction copied. Paste it into your email service to send.';}catch{document.querySelector('#copy-status').textContent='Automatic copy is unavailable. Select and copy the introduction above.';const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(document.querySelector('#email-body'));selection.removeAllRanges();selection.addRange(range);}});
