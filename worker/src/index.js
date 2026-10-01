@@ -34,8 +34,9 @@ export default {
     const audience = AUDIENCES[f.audience];
     const subject = `${audience} introduction | ${f.company}`;
     const text = [
-      'Hello Polanco Ventures,', '', f.message, '',
-      f.name, f.company, f.email, `Relationship: ${audience}`, '',
+      'Hello Polanco Ventures,', '',
+      'Message:', f.message, '',
+      `Name: ${f.name}`, `Company: ${f.company}`, `Email: ${f.email}`, `Relationship: ${audience}`, '',
       'Sent from the contact form on www.polancoventures.com.',
     ].join('\n');
 
