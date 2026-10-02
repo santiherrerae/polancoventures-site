@@ -24,10 +24,11 @@
     P.push(Math.cos(t) * r, y, Math.sin(t) * r, bit(focus, i));
   }
   const vec = (la, lo) => [Math.cos(la * D) * Math.cos(lo * D), Math.sin(la * D), Math.cos(la * D) * Math.sin(lo * D)];
+  const ES = document.documentElement.lang === 'es';
   const places = {
-    dubai: { label: 'Dubai', at: vec(25.2048, 55.2708), view: [55.3, 18] },
-    mexico: { label: 'Mexico City', at: vec(19.4326, -99.1332), view: [-99.1, 14] },
-    na: { label: 'North America', at: vec(49, -100), view: [-97, 36] }
+    dubai: { label: ES ? 'Dubái' : 'Dubai', at: vec(25.2048, 55.2708), view: [55.3, 18] },
+    mexico: { label: ES ? 'Ciudad de México' : 'Mexico City', at: vec(19.4326, -99.1332), view: [-99.1, 14] },
+    na: { label: ES ? 'Norteamérica' : 'North America', at: vec(49, -100), view: [-97, 36] }
   };
   const order = ['dubai', 'mexico', 'na'];
   const STATIC_VIEW = [-22, 20];

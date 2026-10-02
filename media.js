@@ -14,7 +14,8 @@
     const setButton = paused => {
       if (!toggle) return;
       toggle.classList.toggle('is-paused', paused);
-      toggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+      const es = document.documentElement.lang === 'es';
+      toggle.setAttribute('aria-label', paused ? (es ? 'Reproducir video' : 'Play video') : (es ? 'Pausar video' : 'Pause video'));
     };
     const sync = () => {
       if (inView && allowed()) {
