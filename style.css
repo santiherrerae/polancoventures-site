@@ -41,7 +41,8 @@
 .source-link{font-size:15px!important;color:var(--muted)}
 @media(max-width:760px){.company-detail{grid-template-columns:1fr;gap:34px}.facts div{grid-template-columns:96px 1fr;gap:12px}.company-page .section-top,.company-index .section-top,.news-index .section-top{margin-bottom:36px}}
 .company-hero{margin:-5px 0 60px}
-.company-hero .company-image{aspect-ratio:2.3;min-height:0;height:auto}
+.company-hero .company-image{aspect-ratio:2.3;min-height:0;height:auto;width:100%;max-height:clamp(300px,50vh,600px)}
+.hero-anchored img{object-position:70% 78%}
 .company-hero figcaption{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.6}
 .company-thumb img{display:block;width:100%;height:auto;aspect-ratio:1.5;object-fit:cover;margin-bottom:14px}
 .company-thumb a{display:block}
